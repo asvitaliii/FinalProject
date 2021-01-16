@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+Регистрация
+{% endblock title %}
+
+{% block content %}
+<form class="form" action="{% url 'register' %}" method="post" onsubmit="return false">
+    {% csrf_token %}
+    <div>
+        <div class="list-group m-3">
+            <p><input class="list-group item list-group-item-action" type="text" name="login_field" id="login_field"
+                      placeholder="Введите ваш логин"><label id="login_err" style="color: red"></label></p>
+            <p><input class="list-group item list-group-item-action" type="password" name="password_field"
+                      id="password_field"
+                      placeholder="Введите ваш пароль"><label id="password_err" style="color: red"></label></p>
+            <p><input class="list-group item list-group-item-action" type="password" name="password_confirmation_field"
+                      id="password_confirmation_field" placeholder="Повторите пароль">
+                <label id="password_confirmation_err" style="color: red"></label></p>
+        </div>
+        <input class="btn btn-outline-success" id="submit" type="submit" value="ОК">
+        <input class="btn btn-outline-danger" type="reset" value="Сбросить">
+    </div>
+</form>
+<script src="{% static 'js/reg.js' %}"></script>
+{% endblock content %}

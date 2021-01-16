@@ -2,7 +2,7 @@
 {% load static %}
 
 <html lang="en">
-  <head>
+<head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
@@ -16,35 +16,64 @@
     <link rel="canonical" href="https://getbootstrap.com/docs/4.5/examples/cover/">
 
     <!-- Bootstrap core CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+          integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
 
     <!-- Custom styles for this template -->
     <link href="{% static 'css/cover.css' %} " rel="stylesheet">
-  </head>
+</head>
 
-  <body class="text-center">
-    <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
-      <header class="masthead mb-auto">
+<body class="text-center">
+<script src="https://code.jquery.com/jquery-3.5.1.js"
+        integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+        crossorigin="anonymous">
+</script>
+<div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
+    <header class="masthead mb-auto">
         <div class="inner">
-          <h3 class="masthead-brand">Cover</h3>
-          <nav class="nav nav-masthead justify-content-center">
-            <a class="nav-link active" href="#">Home</a>
-            <a class="nav-link" href="#">Features</a>
-            <a class="nav-link" href="#">Contact</a>
-          </nav>
+            <h3 class="masthead-brand">Info Sender</h3>
+            <nav class="nav nav-masthead justify-content-right">
+                <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                    {% if user.is_authenticated %}
+                        <label class="btn btn-secondary active">
+                            <a class="nav-link active" href="{% url 'home_page' %}">Домой</a>
+                        </label>
+                        <label class="btn btn-secondary active">
+                            <a class="nav-link" href="{% url 'sign_in' %}">Личный кабинет</a>
+                        </label>
+                        <label class="btn btn-secondary active">
+                            <a class="nav-link" href="{% url 'logout' %}">Выход</a>
+                        </label>
+                    {% else %}
+                        <label class="btn btn-secondary active">
+                            <a class="nav-link active" href="{% url 'home_page' %}">Домой</a>
+                        </label>
+                        <label class="btn btn-secondary active">
+                            <a class="nav-link" href="{% url 'sign_in' %}">Логин</a>
+                        </label>
+                        <label class="btn btn-secondary active">
+                            <a class="nav-link" href="{% url 'register' %}">Регистрация</a>
+                        </label>
+                    {% endif %}
+                </div>
+
+
+
+            </nav>
         </div>
-      </header>
+    </header>
 
-      <main role="main" class="inner cover">
-          {% block content %}
-          {% endblock content %}
-      </main>
+    <main role="main" class="inner cover">
+        {% block content %}
+        {% endblock content %}
+    </main>
 
-      <footer class="mastfoot mt-auto">
+    <footer class="mastfoot mt-auto">
         <div class="inner">
-          <p>Cover template for <a href="https://getbootstrap.com/">Bootstrap</a>, by <a href="https://twitter.com/mdo">@mdo</a>.</p>
+            <p>Cover template for <a href="https://getbootstrap.com/">Bootstrap</a>, by <a
+                    href="https://twitter.com/mdo">@mdo</a>.</p>
         </div>
-      </footer>
-    </div>
-  </body>
+    </footer>
+</div>
+</body>
 </html>

@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block title %}
+Авторизация
+{% endblock title %}
+
+{% block content %}
+<form class="form" action="{% url 'sign_in' %}" method="post" onsubmit="return true">
+    {% csrf_token %}
+    <div>
+        <div class="list-group m-3">
+            <input class="list-group item list-group-item-action" type="text" name="login_field" id="login_field"
+                   placeholder="Введите ваш логин"><br>
+            <input class="list-group item list-group-item-action" type="password" name="password_field"
+                   id="password_field" placeholder="Введите пароль"><br>
+        </div>
+        <input class="btn btn-outline-success" id="submit" type="submit" value="ОК">
+        <input class="btn btn-outline-danger" type="reset" value="Сбросить">
+    </div>
+</form>
+{% endblock content %}
