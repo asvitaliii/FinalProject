@@ -19,9 +19,7 @@ def register(request):
         name = request.POST.get('login_field')
         pass1 = request.POST.get('password_field')
         pass2 = request.POST.get('password_confirmation_field')
-        data = {'login': name,
-                'pass1': pass1,
-                'pass2': pass2}
+        data = {'login': name, 'pass1': pass1, 'pass2': pass2}
 
         if pass1 != pass2:
             messages.error(request, 'Пароли должны совпадать')
@@ -39,7 +37,6 @@ def register(request):
                 messages.success(request, 'Вы успешно зарегестрированы')
                 return redirect("/personal_account")
             messages.error(request, 'Неизвестная ошибка')
-            print(messages)
             return render(request, 'account/register.html')
 
 
@@ -60,7 +57,7 @@ def sign_in(request):
             return redirect('/personal_account')
         return render(request, 'account/sign_in.html')
     elif request.method == "POST":
-        user = authenticate(request, username=request.POST.get('login_field'), password=request.POST.get('password_field'))
+        user = authenticate(request, name=request.POST.get('login_field'), password=request.POST.get('password_field'))
         if user is None:
             messages.success(request, 'Пользователь не найден или неверный пароль!')
             return render(request, 'account/sign_in.html')
