@@ -1,4 +1,5 @@
 $(document).ready(function(){
+console.log('go')
     let login_valid = false;
     let password_valid = false;
     let password_confirm_valid = false;
@@ -10,6 +11,7 @@ $(document).ready(function(){
             $('#login_err').text('Некорректный логин!');
             login_valid = false
         }else{
+            console.log('ajax started')
             $.ajax({
                 url: '/ajax_reg',
                 data: 'login_field=' + login_val,
@@ -17,13 +19,17 @@ $(document).ready(function(){
                     if (result.message_login==='Логин занят!'){
                         $('#login_err').text(result.message_login);
                         login_valid = false
+                        console.log('bad login')
                     }else{
                         $('#login_err').text('');
                         login_valid = true
+                        console.log('good login')
                     }
                 }
             })
+            console.log('ajax ended')
         }
+        console.log(login_valid)
     })
 
     $('#login_field').focus(function(){
